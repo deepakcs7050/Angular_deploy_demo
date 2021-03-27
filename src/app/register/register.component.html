@@ -1,0 +1,29 @@
+<h1>Loan Form</h1>
+
+<form [formGroup]="AddLoanForm" (ngSubmit)="loan()">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Loan Name</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Loan Name" formControlName="loanName" [ngClass]>
+        <div class="text-danger" *ngIf="AddLoanForm.get('loanName').hasError('minlength') && AddLoanForm.get('loanName').touched">Loan Name min Length 3</div>
+        <div class="text-danger" *ngIf="AddLoanForm.get('loanName').hasError('maxlength') && AddLoanForm.get('loanName').touched">Loan Name Max Length 5</div>
+        <span class="text-danger" *ngIf="(AddLoanForm.get('loanName').touched || submitted) && AddLoanForm.get('loanName').errors?.required">
+        Loan name is required
+    </span>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Loan Type</label>
+        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Loan Type" formControlName="loanType">
+        <span class="text-danger" *ngIf="(AddLoanForm.get('loanType').touched || submitted) && AddLoanForm.get('loanType').errors?.required">
+            loanType is required
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Desciption</label>
+        <textarea class="form-control" formControlName="loanDesciption"> </textarea>
+        <span class="text-danger" *ngIf="(AddLoanForm.get('loanDesciption').touched || submitted) && AddLoanForm.get('loanDesciption').errors?.required">
+            Desciptionype is required
+        </span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

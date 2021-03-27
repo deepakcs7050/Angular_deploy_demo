@@ -1,0 +1,67 @@
+db.user.insertMany([
+    {"leadName":"max",
+    "city": "New York",
+    "tax":20,
+    "salary":50000},
+
+    {"leadName":"Ben",
+    "city": "Dallas",
+    "tax":30,
+    "salary":40000},
+
+     {"leadName":"suresh",
+    "city": "Mumbai",
+    "tax":10,
+    "salary":80000},
+
+      {"leadName":"Ram",
+    "city": "New York",
+    "tax":45,
+    "salary":80000}
+]
+   
+    )
+
+
+ Find 
+ 1. Find with condition
+   db.user.find({"tax":30})
+
+ 2. Find method with multiple condition
+
+   db.user.find({"tax":30,"salary":40000})
+
+ 3. Find method with tax less than 30
+
+    db.user.find({"tax":{$lte:"30"}})  
+
+4. Find method with tax greater than 30
+   
+   db.user.find({"tax":{$gte:"30"}})
+
+5. Find method with  AND Opeator
+
+   db.user.find({$and:[{"tax":30},{"salary":40000}]})
+
+
+ #Find the particular Feild
+
+ 1. db.user.find({},{"city":1})  
+
+ 2. db.user.find({},{"city":1,"_id":0})
+
+ 3. db.user.find({},{"tax":1,"_id":0})
+
+ 4. db.user.find({},{"tax":1,"leadName":1,"salary":1,"_id:0}),
+ 
+ 5. db.user.find({"tax":{$lte:30}},{"tax":1,"leadName":1})
+
+ #Projection
+
+ 1. var pipeline =[
+     {$sort:{"leadName":1}},
+     {$limit:1}
+ ];
+ db.user.aggregate(pipeline);
+
+    
